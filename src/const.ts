@@ -16,3 +16,11 @@ export enum Type {
   Detective = 'detective',
   SciFi = 'sci-fi',
 }
+
+export enum NameSpace {
+  Quests = 'QUESTS',
+}
+
+export const APIRoute = {
+  Quests: '/quest',
+}as const;

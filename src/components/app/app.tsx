@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { MainPage } from '../../pages/main-page/main-page';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,8 @@ const router = createBrowserRouter([
 
 export function App() {
   return (
-    <RouterProvider router={router}/>
+    <HelmetProvider>
+      <RouterProvider router={router}/>
+    </HelmetProvider>
   );
 }
