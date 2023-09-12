@@ -1,6 +1,6 @@
-
 export const AppRoute = {
   Main: '/',
+  Login: '/login',
 } as const;
 
 export enum Level {
@@ -17,10 +17,26 @@ export enum Type {
   SciFi = 'sci-fi',
 }
 
+export enum AuthStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
 export enum NameSpace {
   Quests = 'QUESTS',
+  User = 'USER',
 }
 
 export const APIRoute = {
   Quests: '/quest',
-}as const;
+  Login: '/login',
+  Logout: '/logout',
+} as const;
+
+export enum Pages {
+  main = 'main',
+  myQuest = 'my-quest',
+  contacts = 'contacts'
+}
+
