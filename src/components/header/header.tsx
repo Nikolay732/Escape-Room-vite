@@ -3,9 +3,10 @@ import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-process/user-process-selectors';
 import { AppRoute, Pages } from '../../const';
 import classNames from 'classnames';
+import { HeaderSideNav } from '../header-side-nav/header-side-nav';
 
 type HeaderProps = {
-  currentPage: string;
+  currentPage?: string;
 }
 
 export function Header ({currentPage}: HeaderProps) {
@@ -35,10 +36,7 @@ export function Header ({currentPage}: HeaderProps) {
             }
           </ul>
         </nav>
-        <div className="header__side-nav">
-          {currentPage === Pages.main && <Link className="btn btn--accent header__side-item" to={AppRoute.Login}>Выйти</Link>}
-          <Link className="link header__side-item header__phone-link" to="tel:88003335599">8 (000) 111-11-11</Link>
-        </div>
+        <HeaderSideNav authStatus={authStatus}/>
       </div>
     </header>
   );
