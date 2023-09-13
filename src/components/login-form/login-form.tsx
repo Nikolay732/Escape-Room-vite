@@ -5,17 +5,22 @@ import { loginAction } from '../../store/user-process/user-process-thunkst';
 export function LoginForm () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isCheckBox, setCheckBox] = useState(false);
   const dispatch = useAppDispatch();
 
   const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/;
   const isValidPassword = passwordRegex.test(password);
-  const isNeedDisable = !email || !isValidPassword;
+  const isNeedDisable = !email || !isValidPassword || !isCheckBox;
 
   const handleChangeLogin = (evt: ChangeEvent<HTMLInputElement>) => {
     setEmail(evt.target.value);
   };
   const handleChangePassword = (evt: ChangeEvent<HTMLInputElement>) => {
     setPassword(evt.target.value);
+  };
+
+  const handleChangeCheckBox = () => {
+    setCheckBox((prevCheckBox) => !prevCheckBox);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -75,7 +80,13 @@ export function LoginForm () {
           )}
         </div>
         <label className="custom-checkbox login-form__checkbox">
-          <input type="checkbox" id="id-order-agreement" name="user-agreement" required/>
+          <input
+            onChange={handleChangeCheckBox}
+            type="checkbox"
+            id="id-order-agreement"
+            name="user-agreement"
+            required
+          />
           <span className="custom-checkbox__icon">
             <svg width="20" height="17" aria-hidden="true">
               <use xlinkHref="#icon-tick"></use>

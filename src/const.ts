@@ -35,8 +35,9 @@ export const APIRoute = {
 } as const;
 
 export enum Pages {
-  main = 'main',
-  myQuest = 'my-quest',
-  contacts = 'contacts'
+  Main = 'main',
+  MyQuest = 'my-quest',
+  Contacts = 'contacts',
+  Login = 'login',
 }
 

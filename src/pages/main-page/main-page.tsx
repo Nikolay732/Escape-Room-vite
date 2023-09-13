@@ -17,7 +17,7 @@ export function MainPage() {
 
   return (
     <div className="wrapper">
-      <Header currentPage={Pages.main}/>
+      <Header currentPage={Pages.Main}/>
       <main className="page-content">
         <div className="container">
           <div className="page-content__title-wrapper">
