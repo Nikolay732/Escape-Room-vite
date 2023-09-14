@@ -6,7 +6,7 @@ import {useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchQuestsAction } from '../../store/quests-data/quests-data-thunk';
 import { getQuestsByFilters} from '../../store/quests-data/quests-data-selectors';
-import { Pages } from '../../const';
+import { PageNameValue } from '../../const';
 
 export function MainPage() {
   const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ export function MainPage() {
 
   return (
     <div className="wrapper">
-      <Header currentPage={Pages.Main}/>
+      <Header currentPage={PageNameValue.Main}/>
       <main className="page-content">
         <div className="container">
           <div className="page-content__title-wrapper">

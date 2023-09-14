@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, Pages } from '../../const';
+import { AppRoute, PageNameValue } from '../../const';
+import { PageName } from '../../types/pages';
 
 type LogoProps = {
-  currentPage?: string;
+  currentPage?: PageName;
 }
 
 export function Logo ({currentPage}: LogoProps) {
-  if (currentPage === Pages.Main) {
+  if (currentPage === PageNameValue.Main) {
     return (
       <span className="logo header__logo">
         <svg width="134" height="52" aria-hidden="true">

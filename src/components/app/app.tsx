@@ -4,6 +4,7 @@ import { MainPage } from '../../pages/main-page/main-page';
 import { HelmetProvider } from 'react-helmet-async';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { PrivateRoute } from '../private-route/private-route';
+import { ContactsPage } from '../../pages/contacts-page/contacts-page';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
         <LoginPage/>
       </PrivateRoute>
     ),
-  }
+  },
+  {
+    path: AppRoute.Contacts,
+    element: <ContactsPage/>,
+  },
 ]);
 
 export function App() {

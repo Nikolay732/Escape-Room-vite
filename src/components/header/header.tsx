@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-process/user-process-selectors';
-import { AppRoute, AuthStatus, Pages } from '../../const';
+import { AppRoute, AuthStatus, PageNameValue } from '../../const';
 import classNames from 'classnames';
 import { HeaderSideNav } from '../header-side-nav/header-side-nav';
 import { Logo } from '../logo/logo';
+import { PageName } from '../../types/pages';
 
 type HeaderProps = {
-  currentPage?: string;
+  currentPage?: PageName;
 }
 
 export function Header ({currentPage}: HeaderProps) {
@@ -20,15 +21,15 @@ export function Header ({currentPage}: HeaderProps) {
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <Link className={classNames('link', {'active': currentPage === Pages.Main || Pages.Login})} to={AppRoute.Main}>Квесты</Link>
+              <Link className={classNames('link', {'active': currentPage === PageNameValue.Main || PageNameValue.Login})} to={AppRoute.Main}>Квесты</Link>
             </li>
             <li className="main-nav__item">
-              <Link className={classNames('link', {'active': currentPage === Pages.Contacts})} to="contacts.html">Контакты</Link>
+              <Link className={classNames('link', {'active': currentPage === PageNameValue.Contacts})} to={AppRoute.Contacts}>Контакты</Link>
             </li>
             {
               authStatus === AuthStatus.Auth &&
               <li className="main-nav__item">
-                <Link className={classNames('link', {'active': currentPage === Pages.MyQuest})} to="my-quests.html">Мои бронирования</Link>
+                <Link className={classNames('link', {'active': currentPage === PageNameValue.MyQuest})} to="my-quests.html">Мои бронирования</Link>
               </li>
             }
           </ul>

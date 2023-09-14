@@ -1,6 +1,7 @@
 export const AppRoute = {
   Main: '/',
   Login: '/login',
+  Contacts: '/contacts',
 } as const;
 
 export const LevelTypeValue = {
@@ -36,12 +37,12 @@ export const APIRoute = {
   Logout: '/logout',
 } as const;
 
-export enum Pages {
-  Main = 'main',
-  MyQuest = 'my-quest',
-  Contacts = 'contacts',
-  Login = 'login',
-}
+export const PageNameValue = {
+  Main: 'main',
+  MyQuest: 'my-quest',
+  Contacts: 'contacts',
+  Login: 'login',
+} as const;
 
 export const FilterGenreValue = {
   All: {
