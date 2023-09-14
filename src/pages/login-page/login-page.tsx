@@ -1,11 +1,12 @@
 import { Header } from '../../components/header/header';
 import { Footer } from '../../components/footer/footer';
 import { LoginForm } from '../../components/login-form/login-form';
+import { PageNameValue } from '../../const';
 
 export function LoginPage () {
   return (
     <div className="wrapper">
-      <Header/>
+      <Header currentPage={PageNameValue.Login}/>
       <main className="decorated-page login">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>

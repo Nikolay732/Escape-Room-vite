@@ -8,12 +8,12 @@ import { Logo } from '../logo/logo';
 import { PageName } from '../../types/pages';
 
 type HeaderProps = {
-  currentPage?: PageName;
+  currentPage: PageName;
 }
 
 export function Header ({currentPage}: HeaderProps) {
   const authStatus = useAppSelector(getAuthStatus);
-
+  console.log(currentPage)
   return (
     <header className="header">
       <div className="container container--size-l">
@@ -21,7 +21,7 @@ export function Header ({currentPage}: HeaderProps) {
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <Link className={classNames('link', {'active': currentPage === PageNameValue.Main || PageNameValue.Login})} to={AppRoute.Main}>Квесты</Link>
+              <Link className={classNames('link', {'active': currentPage === PageNameValue.Main})} to={AppRoute.Main}>Квесты</Link>
             </li>
             <li className="main-nav__item">
               <Link className={classNames('link', {'active': currentPage === PageNameValue.Contacts})} to={AppRoute.Contacts}>Контакты</Link>
@@ -34,7 +34,7 @@ export function Header ({currentPage}: HeaderProps) {
             }
           </ul>
         </nav>
-        <HeaderSideNav authStatus={authStatus}/>
+        <HeaderSideNav authStatus={authStatus} currentPage={currentPage}/>
       </div>
     </header>
   );
