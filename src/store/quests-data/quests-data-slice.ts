@@ -1,17 +1,19 @@
-import { FilterGenreValue, NameSpace } from '../../const';
+import { FilterGenreValue, FilterLevelValue, NameSpace } from '../../const';
 import { QuestListItem } from '../../types/quest';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import { fetchQuestsAction } from './quests-data-thunk';
-import { FilterGenre } from '../../types/filters';
+import { FilterGenre, FilterLevel } from '../../types/filters';
 
 type QuestsData = {
   questList: QuestListItem[];
   filterGenre: FilterGenre;
+  filterLevel: FilterLevel;
 };
 
 const initialState: QuestsData = {
   questList: [],
-  filterGenre: FilterGenreValue.All
+  filterGenre: FilterGenreValue.All,
+  filterLevel: FilterLevelValue.Any,
 };
 
 export const questsData = createSlice({
@@ -20,6 +22,9 @@ export const questsData = createSlice({
   reducers: {
     setActiveGenreType(state, action: PayloadAction<FilterGenre>) {
       state.filterGenre = action.payload;
+    },
+    setActiveLevelType(state, action: PayloadAction<FilterLevel>) {
+      state.filterLevel = action.payload;
     }
   },
   extraReducers(builder) {
@@ -30,4 +35,4 @@ export const questsData = createSlice({
   }
 });
 
-export const {setActiveGenreType} = questsData.actions;
+export const {setActiveGenreType, setActiveLevelType} = questsData.actions;

@@ -3,19 +3,21 @@ export const AppRoute = {
   Login: '/login',
 } as const;
 
-export enum Level {
-  Easy = 'easy',
-  Medium = 'medium',
-  Hard = 'hard',
-}
+export const LevelTypeValue = {
+  Any: 'any',
+  Easy: 'easy',
+  Medium: 'medium',
+  Hard: 'hard',
+} as const;
 
-export enum Type {
-  Adventures = 'adventures',
-  Horror = 'horror',
-  Mystic = 'mystic',
-  Detective = 'detective',
-  SciFi = 'sci-fi',
-}
+export const GenreTypeValue = {
+  All: 'all',
+  Adventures: 'adventures',
+  Horror: 'horror',
+  Mystic: 'mystic',
+  Detective: 'detective',
+  SciFi: 'sci-fi',
+} as const;
 
 export enum AuthStatus {
   Auth = 'AUTH',
@@ -96,4 +98,23 @@ export const FilterGenreValue = {
       height: '30',
     },
   },
+} as const;
+
+export const FilterLevelValue = {
+  Any: {
+    type: 'any',
+    text: 'Любой',
+  },
+  Easy: {
+    type: 'easy',
+    text: 'Лёгкий',
+  },
+  Medium: {
+    type: 'medium',
+    text: 'Средний',
+  },
+  Hard: {
+    type: 'hard',
+    text: 'Сложный',
+  }
 } as const;

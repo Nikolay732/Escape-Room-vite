@@ -5,12 +5,13 @@ import { Header } from '../../components/header/header';
 import {useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchQuestsAction } from '../../store/quests-data/quests-data-thunk';
-import { getQuests } from '../../store/quests-data/quests-data-selectors';
+import { getQuestsByFilters} from '../../store/quests-data/quests-data-selectors';
 import { Pages } from '../../const';
 
 export function MainPage() {
   const dispatch = useAppDispatch();
-  const questList = useAppSelector(getQuests);
+  const questList = useAppSelector(getQuestsByFilters);
+
   useEffect (() => {
     dispatch(fetchQuestsAction());
   }, [dispatch]);
