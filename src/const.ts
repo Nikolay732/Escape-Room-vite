@@ -2,7 +2,8 @@ export const AppRoute = {
   Main: '/',
   Login: '/login',
   Contacts: '/contacts',
-  Quest: '/quest',
+  Quest: '/quest/:questId',
+  Booking: '/quest/questId/booking'
 } as const;
 
 export const LevelTypeValue = {
@@ -45,6 +46,7 @@ export const PageNameValue = {
   Contacts: 'contacts',
   Login: 'login',
   Quest: 'quest',
+  Booking: 'booking',
 } as const;
 
 export const FilterGenreValue = {

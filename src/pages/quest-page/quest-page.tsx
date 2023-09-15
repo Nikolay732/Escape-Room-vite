@@ -58,7 +58,7 @@ export function QuestPage () {
             <p className="quest-page__description">
               {description}
             </p>
-            <Link className="btn btn--accent btn--cta quest-page__btn" to="booking.html">Забронировать</Link>
+            <Link className="btn btn--accent btn--cta quest-page__btn" to={questId ? `/quest/${questId}/booking` : ''}>Забронировать</Link>
           </div>
         </div>
       </main>

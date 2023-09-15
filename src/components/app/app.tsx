@@ -6,6 +6,7 @@ import { LoginPage } from '../../pages/login-page/login-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { ContactsPage } from '../../pages/contacts-page/contacts-page';
 import { QuestPage } from '../../pages/quest-page/quest-page';
+import { BookingPage } from '../../pages/booking-page/booking-page';
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
     element: <ContactsPage/>,
   },
   {
-    path: `${AppRoute.Quest}/:questId`,
-    element: <QuestPage/>
+    path: AppRoute.Quest,
+    element: <QuestPage/>,
+  },
+  {
+    path: AppRoute.Booking,
+    element: <BookingPage/>,
   },
 ]);
 
