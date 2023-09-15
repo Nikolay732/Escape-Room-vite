@@ -2,6 +2,7 @@ export const AppRoute = {
   Main: '/',
   Login: '/login',
   Contacts: '/contacts',
+  Quest: '/quest',
 } as const;
 
 export const LevelTypeValue = {
@@ -28,6 +29,7 @@ export enum AuthStatus {
 
 export enum NameSpace {
   Quests = 'QUESTS',
+  Quest = 'QUEST',
   User = 'USER',
 }
 
@@ -39,9 +41,10 @@ export const APIRoute = {
 
 export const PageNameValue = {
   Main: 'main',
-  MyQuest: 'my-quest',
+  MyQuests: 'my-quests',
   Contacts: 'contacts',
   Login: 'login',
+  Quest: 'quest',
 } as const;
 
 export const FilterGenreValue = {
@@ -54,7 +57,7 @@ export const FilterGenreValue = {
       height: '30',
     },
   },
-  Adventure: {
+  Adventures: {
     text: 'Приключения',
     type: 'adventures',
     icon: {

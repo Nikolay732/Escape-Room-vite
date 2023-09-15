@@ -13,7 +13,10 @@ type HeaderProps = {
 
 export function Header ({currentPage}: HeaderProps) {
   const authStatus = useAppSelector(getAuthStatus);
-  console.log(currentPage)
+  const isActiveLinkMain = currentPage === PageNameValue.Main || currentPage === PageNameValue.Login || currentPage === PageNameValue.Quest;
+  const isNotDisabledLinkMain = currentPage !== PageNameValue.Main;
+  const isActiveLinkContacts = currentPage === PageNameValue.Contacts;
+  const isActiveLinkMyQuests = currentPage === PageNameValue.MyQuests;
   return (
     <header className="header">
       <div className="container container--size-l">
@@ -21,15 +24,20 @@ export function Header ({currentPage}: HeaderProps) {
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <Link className={classNames('link', {'active': currentPage === PageNameValue.Main})} to={AppRoute.Main}>Квесты</Link>
+              <Link
+                className={classNames('link', {'active': isActiveLinkMain}, {'not-disabled': isNotDisabledLinkMain})}
+                to={AppRoute.Main}
+              >
+                Квесты
+              </Link>
             </li>
             <li className="main-nav__item">
-              <Link className={classNames('link', {'active': currentPage === PageNameValue.Contacts})} to={AppRoute.Contacts}>Контакты</Link>
+              <Link className={classNames('link', {'active': isActiveLinkContacts})} to={AppRoute.Contacts}>Контакты</Link>
             </li>
             {
               authStatus === AuthStatus.Auth &&
               <li className="main-nav__item">
-                <Link className={classNames('link', {'active': currentPage === PageNameValue.MyQuest})} to="my-quests.html">Мои бронирования</Link>
+                <Link className={classNames('link', {'active': isActiveLinkMyQuests})} to="my-quests.html">Мои бронирования</Link>
               </li>
             }
           </ul>

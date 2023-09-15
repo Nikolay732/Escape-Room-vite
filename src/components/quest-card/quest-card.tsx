@@ -1,3 +1,4 @@
+import { APIRoute } from '../../const';
 import { QuestListItem } from '../../types/quest';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +18,7 @@ export function QuestCard ({quest}: QuestCardProps) {
       </div>
       <div className="quest-card__content">
         <div className="quest-card__info-wrapper">
-          <Link className="quest-card__link" to="quest.html">{title}</Link>
+          <Link className="quest-card__link" to={`${APIRoute.Quests}/${id}`}>{title}</Link>
         </div>
         <ul className="tags quest-card__tags">
           <li className="tags__item">

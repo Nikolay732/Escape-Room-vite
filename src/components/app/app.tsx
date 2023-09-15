@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { ContactsPage } from '../../pages/contacts-page/contacts-page';
+import { QuestPage } from '../../pages/quest-page/quest-page';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: AppRoute.Contacts,
     element: <ContactsPage/>,
+  },
+  {
+    path: `${AppRoute.Quest}/:questId`,
+    element: <QuestPage/>
   },
 ]);
 

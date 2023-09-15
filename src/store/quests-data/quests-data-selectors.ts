@@ -3,6 +3,7 @@ import { GenreTypeValue, LevelTypeValue, NameSpace } from '../../const';
 import { State } from '../../types/state';
 
 export const getQuests = (state: State) => state[NameSpace.Quests].questList;
+export const getQuest = (state: State) => state[NameSpace.Quests].quest;
 export const getActiveFilterGenre = (state: State) => state[NameSpace.Quests].filterGenre;
 export const getActiveFilterLevel = (state: State) => state[NameSpace.Quests].filterLevel;
 export const getQuestsByFilterGenre = createSelector([getQuests, getActiveFilterGenre], (questList, filterGenre) => {

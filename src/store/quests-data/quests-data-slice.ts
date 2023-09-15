@@ -1,17 +1,19 @@
 import { FilterGenreValue, FilterLevelValue, NameSpace } from '../../const';
 import { QuestListItem } from '../../types/quest';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { fetchQuestsAction } from './quests-data-thunk';
+import { fetchQuestAction, fetchQuestsAction } from './quests-data-thunk';
 import { FilterGenre, FilterLevel } from '../../types/filters';
-
+import { Quest } from '../../types/quest';
 type QuestsData = {
   questList: QuestListItem[];
+  quest: Quest | null;
   filterGenre: FilterGenre;
   filterLevel: FilterLevel;
 };
 
 const initialState: QuestsData = {
   questList: [],
+  quest: null,
   filterGenre: FilterGenreValue.All,
   filterLevel: FilterLevelValue.Any,
 };
@@ -31,6 +33,9 @@ export const questsData = createSlice({
     builder
       .addCase(fetchQuestsAction.fulfilled, (state, action) => {
         state.questList = action.payload;
+      })
+      .addCase(fetchQuestAction.fulfilled, (state, action) => {
+        state.quest = action.payload;
       });
   }
 });
