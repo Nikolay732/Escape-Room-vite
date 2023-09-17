@@ -6,14 +6,14 @@ import { FilterGenre, FilterLevel } from '../../types/filters';
 import { Quest } from '../../types/quest';
 type QuestsData = {
   questList: QuestListItem[];
-  quest: Quest | null;
+  selectedQuest: Quest | null;
   filterGenre: FilterGenre;
   filterLevel: FilterLevel;
 };
 
 const initialState: QuestsData = {
   questList: [],
-  quest: null,
+  selectedQuest: null,
   filterGenre: FilterGenreValue.All,
   filterLevel: FilterLevelValue.Any,
 };
@@ -35,7 +35,7 @@ export const questsData = createSlice({
         state.questList = action.payload;
       })
       .addCase(fetchQuestAction.fulfilled, (state, action) => {
-        state.quest = action.payload;
+        state.selectedQuest = action.payload;
       });
   }
 });

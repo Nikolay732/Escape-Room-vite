@@ -5,7 +5,7 @@ import { APIRoute, NameSpace } from '../../const';
 import { Quest } from '../../types/quest';
 
 export const fetchQuestsAction = createAsyncThunk<QuestListItem[], undefined, ThunkAPI> (
-  `${NameSpace.Quests}/fetch`,
+  `${NameSpace.Quests}/fetchQuests`,
   async (_arg, {extra: api}) => {
     const {data} = await api.get<QuestListItem[]>(APIRoute.Quests);
     return data;
@@ -13,7 +13,7 @@ export const fetchQuestsAction = createAsyncThunk<QuestListItem[], undefined, Th
 );
 
 export const fetchQuestAction = createAsyncThunk<Quest, string, ThunkAPI> (
-  `${NameSpace.Quest}/fetch`,
+  `${NameSpace.Quests}/fetchSelectedQuest`,
   async (questId, {extra: api}) => {
     const {data} = await api.get<Quest>(`${APIRoute.Quests}/${questId}`);
     return data;

@@ -3,7 +3,7 @@ import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { PageNameValue } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getQuest } from '../../store/quests-data/quests-data-selectors';
+import { getSelectedQuest } from '../../store/quests-data/quests-data-selectors';
 import { useEffect } from 'react';
 import { fetchQuestAction } from '../../store/quests-data/quests-data-thunk';
 import { getGenreByRus, getLevelByRus } from '../../utils';
@@ -11,7 +11,7 @@ import { getGenreByRus, getLevelByRus } from '../../utils';
 export function QuestPage () {
   const dispatch = useAppDispatch();
   const {questId} = useParams();
-  const quest = useAppSelector(getQuest);
+  const quest = useAppSelector(getSelectedQuest);
 
   useEffect(() => {
     if (questId) {

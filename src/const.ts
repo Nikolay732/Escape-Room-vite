@@ -3,7 +3,7 @@ export const AppRoute = {
   Login: '/login',
   Contacts: '/contacts',
   Quest: '/quest/:questId',
-  Booking: '/quest/questId/booking'
+  Booking: '/quest/:questId/booking'
 } as const;
 
 export const LevelTypeValue = {
@@ -30,14 +30,16 @@ export enum AuthStatus {
 
 export enum NameSpace {
   Quests = 'QUESTS',
-  Quest = 'QUEST',
   User = 'USER',
+  Booking = 'BOOKING',
+  Reservation = 'RESERVATION',
 }
 
 export const APIRoute = {
   Quests: '/quest',
   Login: '/login',
   Logout: '/logout',
+  Reservation: '/reservation',
 } as const;
 
 export const PageNameValue = {
@@ -124,3 +126,9 @@ export const FilterLevelValue = {
     text: 'Сложный',
   }
 } as const;
+
+export const DateBookingQuestValue = {
+  Today: 'today',
+  Tomorrow: 'tomorrow',
+} as const;
+

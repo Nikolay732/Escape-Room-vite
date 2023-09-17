@@ -8,7 +8,7 @@ export function LoginForm () {
   const [isCheckBox, setCheckBox] = useState(false);
   const dispatch = useAppDispatch();
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{3,15}$/;
   const isValidPassword = passwordRegex.test(password);
   const isNeedDisable = !email || !isValidPassword || !isCheckBox;
 
@@ -75,7 +75,7 @@ export function LoginForm () {
           </button>
           {isNeedDisable && password !== '' && (
             <p style={{color: 'red'}}>
-              Password must contain at least one number and one letter
+              Пароль должен быть не менее 3 и не более 15 символов. Должен содержать как минимум 1 цифру и 1 букву.
             </p>
           )}
         </div>
