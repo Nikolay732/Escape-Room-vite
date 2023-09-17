@@ -1,19 +1,23 @@
 import { useParams } from 'react-router-dom';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { PageNameValue } from '../../const';
+import { CITY, MAP_SIZE, PageNameValue } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchBookingInfoAction } from '../../store/booking-process/booking-process-thunks';
-import { getBookingInfo } from '../../store/booking-process/booking-process-selectors';
+import { getBookingInfo, getSelectedBookingPoint } from '../../store/booking-process/booking-process-selectors';
 import { getSelectedQuest } from '../../store/quests-data/quests-data-selectors';
 import { BookingForm } from '../../components/booking-form/booking-form';
+import { BookingInfoData } from '../../types/booking';
+import { changeBookingPointAction } from '../../store/booking-process/booking-process-slice';
+import { Map } from '../../components/map/map';
 
 export function BookingPage () {
   const dispatch = useAppDispatch();
   const {questId} = useParams();
   const bookingInfo = useAppSelector(getBookingInfo);
   const selectedQuest = useAppSelector(getSelectedQuest);
+  let selectedBookingPoint = useAppSelector(getSelectedBookingPoint);
 
   useEffect(() => {
     if (questId) {
@@ -23,7 +27,13 @@ export function BookingPage () {
   if (!selectedQuest) {
     return <p>Not Found</p>;
   }
+  if (selectedBookingPoint === null) {
+    selectedBookingPoint = bookingInfo[0];
+  }
   const {title, peopleMinMax} = selectedQuest;
+  const address = selectedBookingPoint?.location.address;
+
+  const handleChangeSelectedBookingPoint = (point: BookingInfoData) => dispatch(changeBookingPointAction(point));
 
   return (
     <div className="wrapper">
@@ -44,12 +54,14 @@ export function BookingPage () {
           <div className="page-content__item">
             <div className="booking-map">
               <div className="map">
-                <div className="map__container"></div>
+                <div className="map__container">
+                  <Map points={bookingInfo} city={CITY} selectedPoint={selectedBookingPoint} size={MAP_SIZE.bookingPage} quest={null} onPointChange={handleChangeSelectedBookingPoint}/>
+                </div>
               </div>
-              <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p>
+              <p className="booking-map__address">{`Вы выбрали: ${address}`}</p>
             </div>
           </div>
-          <BookingForm/>
+          {!!questId && <BookingForm selectedBookingPoint={selectedBookingPoint} questId={questId} peopleMinMax={peopleMinMax}/>}
         </div>
       </main>
       <Footer/>

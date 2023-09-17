@@ -5,10 +5,10 @@ type CardsGridProps = {
   questList: QuestListItem[];
 }
 
-export function CardsGrid ({questList: questCards}: CardsGridProps) {
+export function CardsGrid ({questList}: CardsGridProps) {
   return (
     <div className="cards-grid">
-      {questCards.map((quest) => <QuestCard key={quest.id} quest={quest}/>)}
+      {questList.map((quest) => <QuestCard key={quest.id} quest={quest}/>)}
     </div>
   );
 }

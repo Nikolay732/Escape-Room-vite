@@ -1,13 +1,24 @@
 import { APIRoute } from '../../const';
-import { QuestListItem } from '../../types/quest';
+import { useAppDispatch } from '../../hooks';
+import { deleteBookedQuestAction } from '../../store/booking-process/booking-process-thunks';
+import { BookedQuestData } from '../../types/booking';
 import { Link } from 'react-router-dom';
+import { getDateTextByRus } from '../../utils';
 
-type QuestCardProps = {
-  quest: QuestListItem;
+type MyQuestCardProps = {
+  bookedQuest: BookedQuestData;
 }
 
-export function QuestCard ({quest}: QuestCardProps) {
+export function MyQuestCard ({bookedQuest}: MyQuestCardProps) {
+  const dispatch = useAppDispatch();
+  const {date, time, location, quest} = bookedQuest;
   const {id, title, previewImg, previewImgWebp, level, peopleMinMax} = quest;
+
+  const handleClickButton = () => {
+    if (bookedQuest.id) {
+      dispatch(deleteBookedQuestAction(bookedQuest.id));
+    }
+  };
 
   return (
     <div key={id} className="quest-card">
@@ -20,6 +31,7 @@ export function QuestCard ({quest}: QuestCardProps) {
       <div className="quest-card__content">
         <div className="quest-card__info-wrapper">
           <Link className="quest-card__link" to={`${APIRoute.Quests}/${id}`}>{title}</Link>
+          <span className="quest-card__info">{`[${getDateTextByRus(date)}, ${time}. ${location.address}]`}</span>
         </div>
         <ul className="tags quest-card__tags">
           <li className="tags__item">
@@ -33,6 +45,7 @@ export function QuestCard ({quest}: QuestCardProps) {
             </svg>{level}
           </li>
         </ul>
+        <button className="btn btn--accent btn--secondary quest-card__btn" type="button" onClick={handleClickButton}>Отменить</button>
       </div>
     </div>
   );

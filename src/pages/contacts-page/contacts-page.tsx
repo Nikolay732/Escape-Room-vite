@@ -1,6 +1,7 @@
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { PageNameValue } from '../../const';
+import { Map } from '../../components/map/map';
+import { CITY, MAP_SIZE, OFFICE_COORDS, PageNameValue } from '../../const';
 
 export function ContactsPage () {
   return (
@@ -10,7 +11,7 @@ export function ContactsPage () {
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>
             <source type="image/webp" srcSet="img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x"/>
-              <img src="img/content/maniac/maniac-bg-size-m.jpg" srcSet="img/content/maniac/maniac-bg-size-m@2x.jpg 2x" width="1366" height="1959" alt=""/>
+            <img src="img/content/maniac/maniac-bg-size-m.jpg" srcSet="img/content/maniac/maniac-bg-size-m@2x.jpg 2x" width="1366" height="1959" alt=""/>
           </picture>
         </div>
         <div className="container">
@@ -46,7 +47,9 @@ export function ContactsPage () {
             </dl>
             <div className="contacts__map">
               <div className="map">
-                <div className="map__container"></div>
+                <div className="map__container">
+                  <Map points={null} city={CITY} selectedPoint={null} size={MAP_SIZE.contactsPage} onPointChange={null} quest={OFFICE_COORDS}/>
+                </div>
               </div>
             </div>
           </div>
@@ -54,5 +57,5 @@ export function ContactsPage () {
       </main>
       <Footer/>
     </div>
-  )
+  );
 }

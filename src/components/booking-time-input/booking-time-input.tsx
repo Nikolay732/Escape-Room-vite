@@ -1,22 +1,23 @@
-import { DateBookingQuest, Slot } from '../../types/booking';
-import { getFormattedDateTime } from '../../utils';
+import { Slot } from '../../types/booking';
 
 type BookingTimeInputProps = {
-  date: DateBookingQuest;
   timeItem: Slot;
+  date: string;
   isDisabledForm: boolean;
-  onChange: (time: string, date: DateBookingQuest) => void;
+  onChange: (time: string, date: string) => void;
 }
 
-export function BookingTimeInput ({timeItem, date, isDisabledForm, onChange}: BookingTimeInputProps) {
-  const {time, isAvailable} = timeItem;
+export function BookingTimeInput({ timeItem, date, isDisabledForm, onChange }: BookingTimeInputProps): JSX.Element {
+  const { isAvailable, time } = timeItem;
+  const formattedTime = time.split(':');
+
   return (
-    <label key={getFormattedDateTime(date, time)} className="custom-radio booking-form__date">
+    <label key={`${time}&${date}`} className="custom-radio booking-form__date">
       <input
         type="radio"
-        id={getFormattedDateTime(date, time)}
+        id={`${date}${formattedTime[0]}h${formattedTime[1]}m`}
         name="date"
-        value={getFormattedDateTime(date, time)}
+        value={`${date}${formattedTime[0]}h${formattedTime[1]}m`}
         disabled={!isAvailable || isDisabledForm}
         onClick={() => onChange(time, date)}
       />
@@ -24,3 +25,4 @@ export function BookingTimeInput ({timeItem, date, isDisabledForm, onChange}: Bo
     </label>
   );
 }
+

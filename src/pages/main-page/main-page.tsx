@@ -28,7 +28,7 @@ export function MainPage() {
           </div>
           <FilterFrom/>
           <h2 className="title visually-hidden">Выберите квест</h2>
-          <CardsGrid questList={questList}/>
+          <CardsGrid questList={questList} isVisible={false}/>
         </div>
       </main>
       <Footer/>

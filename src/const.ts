@@ -3,7 +3,8 @@ export const AppRoute = {
   Login: '/login',
   Contacts: '/contacts',
   Quest: '/quest/:questId',
-  Booking: '/quest/:questId/booking'
+  Booking: '/quest/:questId/booking',
+  MyQuest: '/my-quests',
 } as const;
 
 export const LevelTypeValue = {
@@ -132,3 +133,33 @@ export const DateBookingQuestValue = {
   Tomorrow: 'tomorrow',
 } as const;
 
+export const CITY = {
+  title: 'Санкт-Петербург',
+  lat: 59.93863,
+  lng: 30.31413,
+  zoom: 10,
+};
+
+export const URL_MARKER_DEFAULT =
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+
+export const URL_MARKER_CURRENT =
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+
+export const MAP_SIZE = {
+  bookingPage: {
+    height: '529px',
+    width: '890px',
+    margin: 'auto',
+  },
+  contactsPage: {
+    height: '370px',
+    width: '617px',
+    margin: 'auto',
+  }
+};
+
+export const OFFICE_COORDS = {
+  lat: 59.968456,
+  lng: 30.31759,
+};

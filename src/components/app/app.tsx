@@ -7,6 +7,7 @@ import { PrivateRoute } from '../private-route/private-route';
 import { ContactsPage } from '../../pages/contacts-page/contacts-page';
 import { QuestPage } from '../../pages/quest-page/quest-page';
 import { BookingPage } from '../../pages/booking-page/booking-page';
+import { MyQuestsPage } from '../../pages/my-quest-page/my-quest-page';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: AppRoute.Booking,
     element: <BookingPage/>,
+  },
+  {
+    path: AppRoute.MyQuest,
+    element: <MyQuestsPage/>,
   },
 ]);
 
