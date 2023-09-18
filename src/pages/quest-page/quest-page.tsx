@@ -3,23 +3,50 @@ import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { PageNameValue } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getSelectedQuest } from '../../store/quests-data/quests-data-selectors';
+import { getSelectedQuest, getSelectedQuestStatus } from '../../store/quests-data/quests-data-selectors';
 import { useEffect } from 'react';
 import { fetchQuestAction } from '../../store/quests-data/quests-data-thunk';
 import { getGenreByRus, getLevelByRus } from '../../utils';
+import { NotFoundPage } from '../not-found-page/not-found-page';
+import { changeBookingPointAction } from '../../store/booking-process/booking-process-slice';
+import { LoadingPage } from '../loading-page/loading-page';
 
 export function QuestPage () {
   const dispatch = useAppDispatch();
   const {questId} = useParams();
   const quest = useAppSelector(getSelectedQuest);
+  const isSelectedQuestStatus = useAppSelector(getSelectedQuestStatus);
 
   useEffect(() => {
-    if (questId) {
-      dispatch(fetchQuestAction(questId));
+    let isMounted = true;
+    if (isMounted) {
+      if (questId) {
+        dispatch(fetchQuestAction(questId));
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, questId]);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      dispatch(changeBookingPointAction(null));
+    }
+    return () => {
+      isMounted = false;
+    };
+  });
+
   if (!quest) {
-    return <p>Not Found</p>;
+    return <NotFoundPage/>;
+  }
+
+  if (isSelectedQuestStatus) {
+    return (
+      <LoadingPage/>
+    );
   }
 
   const {title, level, type, peopleMinMax, description, coverImg, coverImgWebp } = quest;

@@ -5,16 +5,37 @@ import { Header } from '../../components/header/header';
 import {useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchQuestsAction } from '../../store/quests-data/quests-data-thunk';
-import { getQuestsByFilters} from '../../store/quests-data/quests-data-selectors';
+import { getQuestsByFilters, getQuestsStatus} from '../../store/quests-data/quests-data-selectors';
 import { PageNameValue } from '../../const';
+import { EmptyMainPage } from '../empty-main-page/empty-main-page';
+import { LoadingPage } from '../loading-page/loading-page';
 
 export function MainPage() {
   const dispatch = useAppDispatch();
   const questList = useAppSelector(getQuestsByFilters);
+  const isQuestLoading = useAppSelector(getQuestsStatus);
 
   useEffect (() => {
-    dispatch(fetchQuestsAction());
+    let isMounted = true;
+    if (isMounted) {
+      dispatch(fetchQuestsAction());
+    }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch]);
+
+  if (questList.length === 0) {
+    return (
+      <EmptyMainPage/>
+    );
+  }
+
+  if (isQuestLoading) {
+    return (
+      <LoadingPage/>
+    );
+  }
 
   return (
     <div className="wrapper">
@@ -28,7 +49,7 @@ export function MainPage() {
           </div>
           <FilterFrom/>
           <h2 className="title visually-hidden">Выберите квест</h2>
-          <CardsGrid questList={questList} isVisible={false}/>
+          <CardsGrid questList={questList}/>
         </div>
       </main>
       <Footer/>

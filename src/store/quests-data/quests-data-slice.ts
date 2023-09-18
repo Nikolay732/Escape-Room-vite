@@ -9,6 +9,8 @@ type QuestsData = {
   selectedQuest: Quest | null;
   filterGenre: FilterGenre;
   filterLevel: FilterLevel;
+  isQuestsLoading: boolean;
+  isSelectedQuestLoading: boolean;
 };
 
 const initialState: QuestsData = {
@@ -16,6 +18,8 @@ const initialState: QuestsData = {
   selectedQuest: null,
   filterGenre: FilterGenreValue.All,
   filterLevel: FilterLevelValue.Any,
+  isQuestsLoading: true,
+  isSelectedQuestLoading: true,
 };
 
 export const questsData = createSlice({
@@ -33,9 +37,23 @@ export const questsData = createSlice({
     builder
       .addCase(fetchQuestsAction.fulfilled, (state, action) => {
         state.questList = action.payload;
+        state.isQuestsLoading = false;
+      })
+      .addCase(fetchQuestsAction.pending, (state) => {
+        state.isQuestsLoading = true;
+      })
+      .addCase(fetchQuestsAction.rejected, (state) => {
+        state.isQuestsLoading = false;
       })
       .addCase(fetchQuestAction.fulfilled, (state, action) => {
         state.selectedQuest = action.payload;
+        state.isSelectedQuestLoading = false;
+      })
+      .addCase(fetchQuestAction.pending, (state) => {
+        state.isSelectedQuestLoading = true;
+      })
+      .addCase(fetchQuestAction.rejected, (state) => {
+        state.isSelectedQuestLoading = false;
       });
   }
 });

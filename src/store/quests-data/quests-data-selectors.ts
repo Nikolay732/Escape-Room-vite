@@ -19,3 +19,6 @@ export const getQuestsByFilters = createSelector([getQuestsByFilterGenre, getAct
   }
   return questList.filter((quest) => quest.level === filterLevel.type);
 });
+
+export const getQuestsStatus = (state: State) => state[NameSpace.Quests].isQuestsLoading;
+export const getSelectedQuestStatus = (state: State) => state[NameSpace.Quests].isSelectedQuestLoading;

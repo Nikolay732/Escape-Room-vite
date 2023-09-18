@@ -6,27 +6,44 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchBookingInfoAction } from '../../store/booking-process/booking-process-thunks';
 import { getBookingInfo, getSelectedBookingPoint } from '../../store/booking-process/booking-process-selectors';
-import { getSelectedQuest } from '../../store/quests-data/quests-data-selectors';
+import { getSelectedQuest, getSelectedQuestStatus } from '../../store/quests-data/quests-data-selectors';
 import { BookingForm } from '../../components/booking-form/booking-form';
 import { BookingInfoData } from '../../types/booking';
 import { changeBookingPointAction } from '../../store/booking-process/booking-process-slice';
 import { Map } from '../../components/map/map';
+import { NotFoundPage } from '../not-found-page/not-found-page';
+import { LoadingPage } from '../loading-page/loading-page';
 
 export function BookingPage () {
   const dispatch = useAppDispatch();
   const {questId} = useParams();
   const bookingInfo = useAppSelector(getBookingInfo);
   const selectedQuest = useAppSelector(getSelectedQuest);
+  const isSelectedQuestStatus = useAppSelector(getSelectedQuestStatus);
   let selectedBookingPoint = useAppSelector(getSelectedBookingPoint);
 
   useEffect(() => {
-    if (questId) {
-      dispatch(fetchBookingInfoAction(questId));
+    let isMounted = true;
+    if (isMounted) {
+      if (questId) {
+        dispatch(fetchBookingInfoAction(questId));
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, questId]);
+
   if (!selectedQuest) {
-    return <p>Not Found</p>;
+    return <NotFoundPage/>;
   }
+
+  if (isSelectedQuestStatus) {
+    return (
+      <LoadingPage/>
+    );
+  }
+
   if (selectedBookingPoint === null) {
     selectedBookingPoint = bookingInfo[0];
   }

@@ -8,6 +8,7 @@ import { ContactsPage } from '../../pages/contacts-page/contacts-page';
 import { QuestPage } from '../../pages/quest-page/quest-page';
 import { BookingPage } from '../../pages/booking-page/booking-page';
 import { MyQuestsPage } from '../../pages/my-quest-page/my-quest-page';
+import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 
 const router = createBrowserRouter([
   {
@@ -32,12 +33,24 @@ const router = createBrowserRouter([
   },
   {
     path: AppRoute.Booking,
-    element: <BookingPage/>,
+    element: (
+      <PrivateRoute>
+        <BookingPage/>
+      </PrivateRoute>
+    ),
   },
   {
     path: AppRoute.MyQuest,
-    element: <MyQuestsPage/>,
+    element: (
+      <PrivateRoute>
+        <MyQuestsPage/>
+      </PrivateRoute>
+    ),
   },
+  {
+    path: '*',
+    element: <NotFoundPage/>,
+  }
 ]);
 
 export function App() {
